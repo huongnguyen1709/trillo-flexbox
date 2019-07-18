@@ -1,0 +1,30 @@
+.container {
+    max-width: 120rem; // 1200px basically if we have enough space, but if it's not enough space, so if the viewport is less than 1200px, then we simply occupy 100% of the available view port width
+    margin: 8rem auto; //top & bottom are 8 rem, left & right are auto, make it center
+    background-color: var(--color-grey-light-1);
+    box-shadow: var(--shadow-dark);
+    min-height: 50rem;
+}
+
+.header {
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--color-grey-light-2)
+}
+
+.content {
+    display: flex; //to set sidebar & hotel view to be side by side, sidebar is on the left, hotel view is on the right
+}
+
+.sidebar {
+    background-color: var(--color-grey-dark-1);
+
+    flex: 0 0 18%;
+}
+
+.hotel-view {
+    background-color: #fff;
+    background-color: orangered;
+
+    flex: 1; //the element should grow as much as it can, so over all the available space that it has
+}
