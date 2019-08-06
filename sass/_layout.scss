@@ -32,6 +32,8 @@
 .content {
     display: flex; //to set sidebar & hotel view to be side by side, sidebar is on the left, hotel view is on the right
 
+    z-index: 1; //to let the user menu on header stay over
+
     @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
     }

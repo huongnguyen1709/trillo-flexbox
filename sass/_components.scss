@@ -70,6 +70,20 @@
 
 ////////////////////////////////////////////////////////
 // USER NAVIGATION
+
+@keyframes dropdown {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+      }
+      to { 
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+}
+
 .user-nav {
     align-self: stretch;
 
@@ -86,6 +100,47 @@
 
     & > *:hover {
         background-color: var(--color-grey-light-2);
+    }
+
+    &__user {
+        display: flex;
+        z-index: 10;
+        position: relative;
+
+        &-display {
+            margin: 1.5rem 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__user:hover &__user-menu {
+        background-color: var(--color-grey-light-1);
+        width: 100%;
+        
+        visibility: visible;
+        animation: dropdown 0.5s;
+    }
+
+    &__user-menu {      
+        position: absolute;
+        top: 53px;
+        left: 0;
+        background-color: var(--color-grey-light-1); 
+        list-style: none;
+        padding: 1rem;
+        visibility: hidden;
+        transition: all .1s;
+
+        & li {
+            padding: 0 .5rem;   
+        }
+
+        & li:hover {
+            background-color: var(--color-grey-light-3);
+        }
     }
 
     &__icon-box {
@@ -397,19 +452,23 @@
         margin-right: .7rem;
 
         //Older browsers
-        //background-image: url(../img/chevron-thin-right.svg);
-        //background-size: cover;
+        background-image: url(../img/chevron-thin-right.svg);
+        background-size: cover;
 
         //Newer browsers - masks
         // a mask defines an area where we can look through the element and see what's behind that element
         // basically, what we're gonna do is to set the background of this element to a solid color, and then use the icon
         // as the mask. So we can look through that mask basically and see the background color in the area where the icon is,
         // everything else is cover, so it's just gonna be white.
-        background-color: var(--color-primary);
-        -webkit-mask-image: url(../img/chevron-thin-right.svg);
-        -webkit-mask-size: cover;
-        mask-image: url(../img/chevron-thin-right.svg);
-        mask-size: cover;
+        @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+            background-color: var(--color-primary);
+            -webkit-mask-image: url(../img/chevron-thin-right.svg);
+            -webkit-mask-size: cover;
+            mask-image: url(../img/chevron-thin-right.svg);
+            mask-size: cover;
+            background-size: none;
+        }
+        
     }
 }
 
